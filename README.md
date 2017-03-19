@@ -1,6 +1,6 @@
 # bot-context
 <a href="https://travis-ci.org/ashubham/bot-context">
-  <img src="https://api.travis-ci.org/ashubham/bot-context.svg?branch=master" class="badge">
+  <img src="https://travis-ci.org/ashubham/bot-context.svg?branch=master" class="badge">
 </a>
 <a href='https://coveralls.io/github/ashubham/bot-context?branch=master'>
     <img src='https://coveralls.io/repos/github/ashubham/bot-context/badge.svg?branch=master' alt='Coverage Status' />
