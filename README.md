@@ -12,7 +12,7 @@ A easy and powerful way to maintain conversational context in chat bots. Using f
 
 ## Core Concept
 
-![context-map](https://lh4.googleusercontent.com/9AXBgK_91zfuBavDWHl6Fg2gv9_wEUY38r8Et48udtOpT9__Y4xYfj82TwktdnULF4lBVYE96veXPaU=w2412-h1470)
+![context stack](https://raw.githubusercontent.com/ashubham/bot-context/master/img/context-stack.png)
 
 Here we introduce a reactive approach to maintaining the context of conversations. 
 
