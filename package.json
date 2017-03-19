@@ -1,0 +1,34 @@
+{
+  "name": "bot-context",
+  "version": "0.2.3",
+  "description": "Maintain conversation context in your chatbots, its easy and powerful.",
+  "main": "index.js",
+  "scripts": {
+    "test": "istanbul cover jasmine && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashubham/bot-context.git"
+  },
+  "keywords": [
+    "chatbot",
+    "context",
+    "conversation",
+    "bot",
+    "framework"
+  ],
+  "author": "ashubham@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ashubham/bot-context/issues"
+  },
+  "homepage": "https://github.com/ashubham/bot-context#readme",
+  "devDependencies": {
+    "coveralls": "^2.12.0",
+    "istanbul": "^0.4.5",
+    "jasmine": "^2.5.3"
+  },
+  "dependencies": {
+    "log4js": "^1.1.1"
+  }
+}
