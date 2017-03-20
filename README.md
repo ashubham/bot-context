@@ -28,6 +28,8 @@ are maintained, allowing time travel!
 
 ## Usage
 
+`npm i bot-context`
+
 This is a very basic pizza delivery bot, to demonstrate the usage of
 bot-context.
 
