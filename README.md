@@ -5,7 +5,7 @@
 <a href='https://coveralls.io/github/ashubham/bot-context?branch=master'>
     <img src='https://coveralls.io/repos/github/ashubham/bot-context/badge.svg?branch=master' alt='Coverage Status' />
 </a>
-
+<a href="https://badge.fury.io/js/bot-context"><img src="https://badge.fury.io/js/bot-context.svg" alt="npm version" height="18"></a>
 
 A easy and powerful way to maintain conversational context in chat bots. Using function closures.
 [Blog post](https://medium.com/@ashishshubham/maintaining-context-in-chatbots-2016b6a5b7c6#.z08lc981s)
@@ -104,11 +104,11 @@ by just typing the type of the pizza.
 
 ## Webhooks
 
-Many people use WYSIWYG bot creators. Almost all of them allow integration with external
+WYSIWYG bot creators are the latest hot stuff. Almost all of them allow integration with external
 tools via http `webhooks`.
 
-`bot-context` can easily be used with such bot tools. Please see the [examples](https://github.com/ashubham/bot-context/blob/master/examples/webhooks.js).
-On how could you setup `bot-context` as a webservice.
+`bot-context` can easily be used with such bot tools. Please see the [example](https://github.com/ashubham/bot-context/blob/master/examples/webhooks.js),
+on how could you setup `bot-context` as a webservice.
 
 
 ## API
@@ -124,11 +124,11 @@ returns an instance of the ContextMap, the following methods are available on it
     -   [isSet](#isset)
     -   [match](#match)
 
-## ContextMap **extends Map**
+## ContextMap *extends Map*
 
 A map to hold contexts for all users/keys
 
-### getOrCreate(uKey: string)
+### getOrCreate(uKey: string): Context
 
 Get Or Creates a context given the key.
 
