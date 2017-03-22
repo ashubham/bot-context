@@ -101,13 +101,15 @@ function end(userId, pizzaType, address) {
 Now, if a user after putting his address changes his mind to another pizza type, 
 by just typing the type of the pizza.
 
+
 ## Webhooks
 
 Many people use WYSIWYG bot creators. Almost all of them allow integration with external
 tools via http `webhooks`.
 
-`bot-context` can easily be used with such bot tools. Please see the [examples](https://github.com/ashubham/bot-context/tree/master/examples).
+`bot-context` can easily be used with such bot tools. Please see the [examples](https://github.com/ashubham/bot-context/blob/master/examples/webhooks.js).
 On how could you setup `bot-context` as a webservice.
+
 
 ## API
 
@@ -183,5 +185,5 @@ Callback called when a context is matched, with the following values.
 
 -   `err` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | null)** Error if any
 -   `match` **any** the match returned from the matchFn or regex
--   `contextCallback` **ContextCb** the callback which was previously set to the context stack.
+-   `contextCallback` the callback which was previously set to the context stack.
 
