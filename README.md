@@ -39,13 +39,13 @@ let context = require('bot-context');
 
 function onMessageRecieved(message, userId) {
   let ctx = botContext.getOrCreate(userId);
-  ctx.match(message, function(err, match, contextCb) {
-    if(!err) contextCb(userId, match);
-  });
-
   if(!ctx.isSet()) {
       init(userId); // initialize the actions.
   }
+
+  ctx.match(message, function(err, match, contextCb) {
+    if(!err) contextCb(userId, match);
+  });
 }
 ```
 
@@ -98,119 +98,90 @@ function end(userId, pizzaType, address) {
 } 
 ```
 
-Now, if a user after putting his address changes his mind to another pizza type, by just typing the type of the pizza.
+Now, if a user after putting his address changes his mind to another pizza type, 
+by just typing the type of the pizza.
+
+## Webhooks
+
+Many people use WYSIWYG bot creators. Almost all of them allow integration with external
+tools via http `webhooks`.
+
+`bot-context` can easily be used with such bot tools. Please see the [examples](https://github.com/ashubham/bot-context/tree/master/examples).
+On how could you setup `bot-context` as a webservice.
 
 ## API
 
+`var contextMap = require('bot-context');`
+
+returns an instance of the ContextMap, the following methods are available on it.
+
 -   [ContextMap](#contextmap)
-    -   [constructor](#constructor)
-    -   [getOrCreate](#getorcreate)
+    -   [getOrCreate()](#getorcreate)
 -   [Context](#context)
-    -   [constructor](#constructor-1)
     -   [set](#set)
-    -   [ContextCb](#contextcb)
-    -   [matcherFn](#matcherfn)
     -   [isSet](#isset)
     -   [match](#match)
-    -   [contextMatchedCb](#contextmatchedcb)
 
-## ContextMap
-
-**Extends Map**
+## ContextMap **extends Map**
 
 A map to hold contexts for all users/keys
 
-### constructor
-
-Creates an instance of ContextMap.
-
-**Parameters**
-
--   `args` **any** 
-
-### getOrCreate
+### getOrCreate(uKey: string)
 
 Get Or Creates a context given the key.
 
 **Parameters**
 
--   `uKey` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `uKey` unique key to identify a user. **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 Returns **[Context](#context)** 
 
 ## Context
 
-### constructor
+A context uniqiue for each user. The following methods are available on the `context`.
 
-Creates an instance of Context.
-
-**Parameters**
-
--   `key` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-### set
+### <a name="set"></a>set(matchRegex|matcherFn, contextCallback)
 
 Set the current context.
 
 **Parameters**
 
--   `pattern` **([RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp) | matcherFn)** 
--   `callback` **ContextCb** 
+-   `matchRegex|matchFn` **([RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp) | Function)** Used to match the input
+-   `contextCallback` Callback which is stored in the stack, it can hold references to closure vars.
 
-### ContextCb
+  #### matcherFn(inputText, callback)
 
-Context callback set in the context stack.
+  Matcher method called when matching contexts. It is called with the following params.
 
-Type: [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)
-
-**Parameters**
-
--   `pattern`  
--   `callback`  
-
-### matcherFn
-
-Matcher method called when matching contexts.
-
-Type: [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)
-
-**Parameters**
+  **Parameters**
 
 -   `text` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** input text
--   `cb` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** Callback resolving to truthy/falsy value.
--   `pattern`  
--   `callback`  
+-   `callback(boolean)` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** Callback resolving to truthy/falsy value.
 
-### isSet
+  #### contextCallback
 
-Returns whethere there is any context set.
+  Context callback set in the context stack.
 
-Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+###<a name="isset"></a> isSet(): boolean
 
-### match
+  Returns, is there any context set.
 
-Match an input text to the collection of currently set contexts.
+### <a name="match"></a>match(inputText: string, contextMatchedCallback)
 
-**Parameters**
+  Match an input text to the collection of currently set contexts.
 
--   `input` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** text
--   `callback` **contextMatchedCb** The callback to be called if matched.
--   `text`  
--   `cb`  
+  **Parameters**
 
-Returns **any** 
+-   `inputText` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** text
+-   `contextMatchedCallback` The callback to be called if matched.
 
-### contextMatchedCb
+#### contextMatchedCallback
 
-Callback when a context is matched.
-
-Type: [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)
+Callback called when a context is matched, with the following values.
 
 **Parameters**
 
 -   `err` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | null)** Error if any
 -   `match` **any** the match returned from the matchFn or regex
--   `callback` **ContextCb** the callback set to the context stack.
--   `text`  
--   `cb`  
+-   `contextCallback` **ContextCb** the callback which was previously set to the context stack.
 
