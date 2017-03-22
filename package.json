@@ -1,6 +1,6 @@
 {
   "name": "bot-context",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Maintain conversation context in your chatbots, its easy and powerful.",
   "main": "index.js",
   "scripts": {
